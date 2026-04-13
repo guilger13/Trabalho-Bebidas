@@ -1,0 +1,80 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@300;400;600&display=swap');
+
+:root {
+    --primary-gold: #d4af37;
+    --dark-bg: #111;
+    --card-bg: #1e1e1e;
+    --text-light: #f4f4f4;
+    --error-red: #e74c3c;
+    --accent-orange: #ff8c00;
+}
+
+body {
+    background-color: var(--dark-bg);
+    color: var(--text-light);
+    font-family: 'Poppins', sans-serif;
+    margin: 0; padding: 20px;
+}
+
+h1 { font-family: 'Playfair Display', serif; color: var(--primary-gold); text-align: center; }
+
+/* Busca */
+#formBusca { display: flex; justify-content: center; gap: 10px; margin-bottom: 30px; }
+#inputNome { padding: 12px 20px; border-radius: 25px; border: 2px solid var(--primary-gold); background: transparent; color: white; width: 300px; outline: none; }
+#formBusca button { padding: 12px 25px; border-radius: 25px; border: none; background-color: var(--primary-gold); font-weight: bold; cursor: pointer; transition: 0.3s; }
+
+/* Grid e Cards */
+.grid-container { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 25px; padding: 20px; }
+.drink-card { background-color: var(--card-bg); border-radius: 15px; overflow: hidden; display: flex; flex-direction: column; transition: transform 0.3s; border: 1px solid #333; position: relative; }
+.drink-card:hover { transform: translateY(-8px); border-color: var(--primary-gold); }
+.drink-card-image { width: 100%; height: 250px; object-fit: cover; }
+.drink-card-body { padding: 20px; flex-grow: 1; }
+.drink-card-title { display: flex; justify-content: space-between; align-items: center; color: var(--primary-gold); font-family: 'Playfair Display', serif; }
+.drink-card-instructions { font-size: 0.85rem; color: #aaa; margin-top: 10px; line-height: 1.4; }
+
+/* Botão Lixeira Vermelho Circular */
+.btn-excluir-card {
+    background-color: var(--error-red);
+    color: white; border: none;
+    width: 40px; height: 40px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer; font-size: 1.1rem;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+.btn-excluir-card:hover { transform: scale(1.1) rotate(10deg); background-color: #ff4d4d; }
+
+/* Toasts (Mensagens) */
+#toast-container { position: fixed; bottom: 20px; right: 20px; z-index: 10000; display: flex; flex-direction: column; gap: 10px; }
+.toast {
+    background: rgba(30, 30, 30, 0.95); backdrop-filter: blur(8px);
+    color: white; padding: 15px 25px; border-radius: 12px;
+    border-left: 4px solid var(--primary-gold);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.5);
+    animation: slideIn 0.5s forwards, fadeOut 0.5s 2.5s forwards;
+}
+.toast.error-center {
+    position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);
+    background: rgba(45, 20, 20, 0.98); border-bottom: 5px solid var(--error-red);
+    padding: 30px 50px; text-align: center; border-left: none;
+    animation: zoomIn 0.4s forwards, fadeOut 0.5s 2.5s forwards;
+}
+
+/* Modal de Confirmação */
+.modal-overlay {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.85); backdrop-filter: blur(5px);
+    display: flex; justify-content: center; align-items: center;
+    z-index: 9999; opacity: 0; visibility: hidden; transition: 0.3s;
+}
+.modal-overlay.active { opacity: 1; visibility: visible; }
+.modal-content {
+    background: var(--card-bg); padding: 35px; border-radius: 20px;
+    border-bottom: 5px solid var(--error-red); text-align: center;
+    transform: translateY(20px); transition: 0.3s;
+}
+.modal-overlay.active .modal-content { transform: translateY(0); }
+
+@keyframes slideIn { from { transform: translateX(100%); } to { transform: translateX(0); } }
+@keyframes zoomIn { from { transform: translate(-50%, -50%) scale(0.5); opacity: 0; } to { transform: translate(-50%, -50%) scale(1); opacity: 1; } }
+@keyframes fadeOut { to { opacity: 0; } }

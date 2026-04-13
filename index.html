@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Gestor de Drinks - Busca</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Gestor de Drinks 🍹</h1>
+    <form id="formBusca">
+        <input type="text" id="inputNome" placeholder="Pesquisar drink..." required>
+        <button type="submit">🔎Buscar</button>
+    </form>
+
+    <div style="text-align: center; margin-bottom: 20px;">
+        <a href="favoritos.html" style="color: var(--primary-gold); text-decoration: none; font-weight: bold;">⭐ Meus Favoritos</a>
+    </div>
+
+    <div class="container-titulo">
+        <h2 id="tituloSecao">🤔Sugestões para você</h2>
+    </div>
+
+    <div id="gridBebidas" class="grid-container"></div>
+
+    <div id="toast-container"></div>
+    <div id="modalConfirmacao" class="modal-overlay">
+        <div class="modal-content">
+            <h3 style="color: var(--primary-gold);">Remover Drink?</h3>
+            <p>Tem certeza que deseja remover este drink dos favoritos?</p>
+            <div style="display: flex; gap: 15px; justify-content: center; margin-top: 20px;">
+                <button id="btnConfirmarRemocao" style="background: var(--error-red); color: white; border: none; padding: 10px 25px; border-radius: 20px; cursor: pointer;">Sim, remover</button>
+                <button id="btnCancelarRemocao" style="background: #444; color: white; border: none; padding: 10px 25px; border-radius: 20px; cursor: pointer;">Cancelar</button>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="script.js"></script>
+</body>
+</html>
